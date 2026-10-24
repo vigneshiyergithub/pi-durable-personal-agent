@@ -18,8 +18,8 @@ Set it up in three stages. Each one works without the next.
 | 2. Hosted | The same, 24/7, plus Telegram | A [Railway](https://railway.com) account with a volume, a Telegram bot from @BotFather | [Deploy to Railway](#deploy-to-railway) |
 | 3. Orchestrator | Goals planned by a foreman and coded by OpenCode in throwaway containers, reviewed PRs | A second Railway project, an OpenRouter management key, a GitHub org for the agent | [Setup (once)](#setup-once) |
 
-Every variable is listed with a comment in [`.env.example`](.env.example). Only `OPENROUTER_API_KEY` and `AUTH_TOKEN`
-are required for stage 1.
+Every variable is listed with a comment in [`.env.example`](.env.example), with rarely changed ones under
+**Advanced**. Only `OPENROUTER_API_KEY` and `AUTH_TOKEN` (any long random string) are required for stage 1.
 
 ## How it works
 
@@ -176,6 +176,8 @@ babysits the work until the goal is done. Nothing runs on your computer.
   trimmed once on boot.
 
 ### Setup (once)
+
+Needs a deployed agent with a public domain ([Deploy to Railway](#deploy-to-railway), step 5).
 
 1. **Railway sandbox project:** an empty project with an environment-scoped project token, set on the agent as
    `SANDBOX_RAILWAY_TOKEN`, `SANDBOX_PROJECT_ID` and `SANDBOX_ENVIRONMENT_ID`.
@@ -383,9 +385,12 @@ npm run dev            # http://localhost:3000
    push or merged PR on `master` redeploys it, so no `railway up` is needed.
 2. **Add a Volume** to the service mounted at **`/data`**. This is required: it holds the SQLite DB, skills, memory
    and workspace.
-3. Set the variables from `.env.example` (`OPENROUTER_API_KEY`, `AUTH_TOKEN`, `TELEGRAM_BOT_TOKEN`, `TZ`).
+3. Set the variables from `.env.example` (`OPENROUTER_API_KEY`, `AUTH_TOKEN`, `TELEGRAM_BOT_TOKEN`, `TZ`). Don't
+   set `DATA_DIR` or `PORT` there: the image uses `/data`, and Railway sets the port. `npm run push-env` copies your
+   `.env` to the linked service (Railway CLI) without printing values, skipping `DATA_DIR`, `PORT` and `AUTH_TOKEN`.
 4. Message your bot. It replies with your Telegram id. Set `TELEGRAM_OWNER_ID` to it and redeploy.
-5. Optional: **Settings → Networking → Generate Domain** for the web chat.
+5. **Settings → Networking → Generate Domain** for the web chat. Optional for stage 2, required for the
+   orchestrator: containers report back to this address, and passkeys are bound to it.
 
 Keep **1 replica**: pi-durable allows one process per storage. `railway.json` pins this and sets the healthcheck.
 
@@ -412,7 +417,7 @@ loop now)
 - **Not covered:** what the agent does with tools you give it, the providers you route models through, and the security
   of your Railway, GitHub and Telegram accounts. Rotate keys if you suspect any of them leaked.
 
-Report security issues privately to the repository owner (GitHub's "Report a vulnerability"), not in a public issue.
+Report security issues privately (see [SECURITY.md](SECURITY.md)), not in a public issue.
 
 ## Notes
 
