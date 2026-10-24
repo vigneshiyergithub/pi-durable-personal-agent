@@ -1,0 +1,11 @@
+{
+	"version": "0.0.1",
+	"configurations": [
+		{
+			"name": "agent",
+			"runtimeExecutable": "node",
+			"runtimeArgs": ["--max-old-space-size=768", "--env-file=.env", "src/main.ts"],
+			"port": 3000
+		}
+	]
+}

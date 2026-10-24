@@ -1,0 +1,11 @@
+# The runner's log path before the closing-log-pipe hardening, captured by runner/test/capture-log-format.mjs
+# (git show 44b2036:runner/task-runner.mjs, its log statements evaluated verbatim); lines only, format byte-identical.
+[runner +0s] task migrate-dates attempt 1 on pi/tasks-agent@agent/do-the-thing
+[runner +0s] using preinstalled opencode 1.19.3
+[runner +0s] cloned at 9b4cf81
+[runner +0s] opencode finished (exit 0, $0.041)
+[runner +0s] verify: npm ci --no-audit --no-fund
+[runner +0s] proof: the log path survives a closed pipe
+[runner +0s] proofs: 1/1 exit 0
+[runner +0s] evidence ready: 1 commit(s), verify exit 0, proofs 1/1 exit 0, report done, bundle 9 KB
+[runner +0s] evidence sent: 1 commit(s), verify exit 0

@@ -1,0 +1,222 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+@import "shadcn/tailwind.css";
+@import "@fontsource-variable/inter";
+@import "@fontsource-variable/jetbrains-mono";
+
+/* Streamdown ships Tailwind classes for markdown; let Tailwind see them. */
+@source "../node_modules/streamdown/dist/*.js";
+
+@custom-variant dark (&:is(.dark *));
+
+@theme inline {
+    --font-heading: var(--font-sans);
+    --font-sans: 'Inter Variable', system-ui, sans-serif;
+    --font-mono: 'JetBrains Mono Variable', ui-monospace, monospace;
+    --color-surface: var(--surface);
+    --color-panel: var(--panel);
+    --color-raised: var(--raised);
+    --color-border-strong: var(--border-strong);
+    --color-soft: var(--soft);
+    --color-subtle: var(--subtle);
+    --color-attention: var(--attention);
+    --color-attention-fg: var(--attention-fg);
+    --color-link: var(--link);
+    --color-ok: var(--ok);
+    --color-tone-red: var(--tone-red);
+    --color-tone-red-soft: var(--tone-red-soft);
+    --color-tone-amber: var(--tone-amber);
+    --color-tone-amber-soft: var(--tone-amber-soft);
+    --color-tone-green: var(--tone-green);
+    --color-tone-green-soft: var(--tone-green-soft);
+    --color-tone-blue: var(--tone-blue);
+    --color-tone-blue-soft: var(--tone-blue-soft);
+    --color-tone-grey: var(--tone-grey);
+    --color-tone-grey-soft: var(--tone-grey-soft);
+    --color-tone-violet: var(--tone-violet);
+    --color-tone-violet-soft: var(--tone-violet-soft);
+    --color-sidebar-ring: var(--sidebar-ring);
+    --color-sidebar-border: var(--sidebar-border);
+    --color-sidebar-accent-foreground: var(--sidebar-accent-foreground);
+    --color-sidebar-accent: var(--sidebar-accent);
+    --color-sidebar-primary-foreground: var(--sidebar-primary-foreground);
+    --color-sidebar-primary: var(--sidebar-primary);
+    --color-sidebar-foreground: var(--sidebar-foreground);
+    --color-sidebar: var(--sidebar);
+    --color-chart-5: var(--chart-5);
+    --color-chart-4: var(--chart-4);
+    --color-chart-3: var(--chart-3);
+    --color-chart-2: var(--chart-2);
+    --color-chart-1: var(--chart-1);
+    --color-ring: var(--ring);
+    --color-input: var(--input);
+    --color-border: var(--border);
+    --color-destructive: var(--destructive);
+    --color-accent-foreground: var(--accent-foreground);
+    --color-accent: var(--accent);
+    --color-muted-foreground: var(--muted-foreground);
+    --color-muted: var(--muted);
+    --color-secondary-foreground: var(--secondary-foreground);
+    --color-secondary: var(--secondary);
+    --color-primary-foreground: var(--primary-foreground);
+    --color-primary: var(--primary);
+    --color-popover-foreground: var(--popover-foreground);
+    --color-popover: var(--popover);
+    --color-card-foreground: var(--card-foreground);
+    --color-card: var(--card);
+    --color-foreground: var(--foreground);
+    --color-background: var(--background);
+    --radius-sm: calc(var(--radius) * 0.6);
+    --radius-md: calc(var(--radius) * 0.8);
+    --radius-lg: var(--radius);
+    --radius-xl: calc(var(--radius) * 1.4);
+    --radius-2xl: calc(var(--radius) * 1.8);
+    --radius-3xl: calc(var(--radius) * 2.2);
+    --radius-4xl: calc(var(--radius) * 2.6);
+}
+
+/* Palette from the "Personal agent" prototype: near-black surfaces in quiet steps, one amber accent for what needs the
+   owner, and soft tinted tags for state. Light mode keeps the same hierarchy. */
+:root {
+    --background: #FAFAFA;
+    --foreground: #111113;
+    --card: #FFFFFF;
+    --card-foreground: #111113;
+    --popover: #FFFFFF;
+    --popover-foreground: #111113;
+    --primary: #18181B;
+    --primary-foreground: #FAFAFA;
+    --secondary: #F1F1F3;
+    --secondary-foreground: #18181B;
+    --muted: #F1F1F3;
+    --muted-foreground: #63636B;
+    --accent: #EBEBED;
+    --accent-foreground: #111113;
+    --destructive: #C2410C;
+    --border: #E4E4E7;
+    --input: #DCDCE0;
+    --ring: #A1A1AA;
+    --chart-1: #18181B;
+    --chart-2: #7C3AED;
+    --chart-3: #2F5BD3;
+    --chart-4: #D97706;
+    --chart-5: #1E7A43;
+    --radius: 0.625rem;
+    --sidebar: #FFFFFF;
+    --sidebar-foreground: #111113;
+    --sidebar-primary: #18181B;
+    --sidebar-primary-foreground: #FAFAFA;
+    --sidebar-accent: #F1F1F3;
+    --sidebar-accent-foreground: #18181B;
+    --sidebar-border: #E4E4E7;
+    --sidebar-ring: #A1A1AA;
+
+    --surface: #FFFFFF;
+    --panel: #FFFFFF;
+    --raised: #F4F4F5;
+    --border-strong: #D0D0D6;
+    --soft: #3F3F46;
+    --subtle: #7A7A83;
+    --attention: #F5B544;
+    --attention-fg: #9A5B00;
+    --link: #2F5BD3;
+    --tone-red: #B42318;
+    --tone-red-soft: #FDECEC;
+    --tone-amber: #92590A;
+    --tone-amber-soft: #FDF3E1;
+    --tone-green: #1E7A43;
+    --tone-green-soft: #E7F6EC;
+    --tone-blue: #2F5BD3;
+    --tone-blue-soft: #E8EEFD;
+    --tone-grey: #4A4A52;
+    --tone-grey-soft: #F1F1F3;
+    --tone-violet: #6D28D9;
+    --tone-violet-soft: #F1EAFE;
+    --ok: #1E9E57;
+}
+
+.dark {
+    --background: #0B0B0C;
+    --foreground: #EDEDEF;
+    --card: #141416;
+    --card-foreground: #EDEDEF;
+    --popover: #141416;
+    --popover-foreground: #EDEDEF;
+    --primary: #EDEDEF;
+    --primary-foreground: #0B0B0C;
+    --secondary: #1B1B1E;
+    --secondary-foreground: #EDEDEF;
+    --muted: #1B1B1E;
+    --muted-foreground: #A1A1AA;
+    --accent: #1F1F23;
+    --accent-foreground: #EDEDEF;
+    --destructive: #F8A9A9;
+    --border: #222226;
+    --input: #2A2A2F;
+    --ring: #3A3A40;
+    --chart-1: #EDEDEF;
+    --chart-2: #B794F6;
+    --chart-3: #7AA7FF;
+    --chart-4: #F5B544;
+    --chart-5: #5CC98A;
+    --sidebar: #0E0E10;
+    --sidebar-foreground: #EDEDEF;
+    --sidebar-primary: #EDEDEF;
+    --sidebar-primary-foreground: #0B0B0C;
+    --sidebar-accent: #1B1B1E;
+    --sidebar-accent-foreground: #EDEDEF;
+    --sidebar-border: #222226;
+    --sidebar-ring: #3A3A40;
+
+    --surface: #0E0E10;
+    --panel: #0F0F11;
+    --raised: #17171A;
+    --border-strong: #2E2E34;
+    --soft: #C4C4CC;
+    --subtle: #8B8B94;
+    --attention: #F5B544;
+    --attention-fg: #F5B544;
+    --link: #9DBBFF;
+    --tone-red: #F8A9A9;
+    --tone-red-soft: #2A1515;
+    --tone-amber: #F9CF83;
+    --tone-amber-soft: #2A2112;
+    --tone-green: #9FE3BA;
+    --tone-green-soft: #13261B;
+    --tone-blue: #B5CBFF;
+    --tone-blue-soft: #16203A;
+    --tone-grey: #C4C4CC;
+    --tone-grey-soft: #1B1B1E;
+    --tone-violet: #D6BCFA;
+    --tone-violet-soft: #221A33;
+    --ok: #5CC98A;
+}
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+    }
+  body {
+    @apply bg-background text-foreground;
+    }
+  button:not(:disabled), [role="button"]:not(:disabled) {
+    cursor: pointer;
+    }
+  html {
+    @apply font-sans;
+    color-scheme: light;
+    }
+  html.dark {
+    color-scheme: dark;
+    }
+  a {
+    color: var(--link);
+    }
+}
+/* Scrollable tab rows hide their scrollbar; the content stays reachable by swipe or trackpad. */
+.no-scrollbar {
+  scrollbar-width: none;
+}
+.no-scrollbar::-webkit-scrollbar {
+  display: none;
+}
